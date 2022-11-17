@@ -29,6 +29,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   animated_splash_screen: ^1.1.0
+  lottie: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -47,7 +48,8 @@ flutter:
 
 
   assets:
-    - assets/
+    - assets/images/
+    - assets/videos/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

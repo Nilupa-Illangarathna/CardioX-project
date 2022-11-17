@@ -1,7 +1,8 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:spash_app/HomePage.dart';
+import 'package:spash_app/pages/HomePage.dart';
+import 'package:lottie/lottie.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,15 +30,21 @@ class MyApp extends StatelessWidget {
       home: AnimatedSplashScreen(
         splash: Hero(
           tag: "Splash",
-          child: Image.asset(
-            'assets/image.png',
+          child:
+          // Lottie.asset(
+          //   'assets/videos/splash screen.lottie.json',
+          //   fit: BoxFit.fitWidth,
+          // ),
+          Image.asset(
+            'assets/images/CardioXPNG.jpg',
           ),
         ),
         nextScreen: HomePage(),
-        splashTransition: SplashTransition.slideTransition,
+        duration: 2000,
+        splashTransition: SplashTransition.fadeTransition,
         // disableNavigation: true,
         splashIconSize: 400,
-        backgroundColor: Colors.black26,
+        backgroundColor: Colors.white.withOpacity(1),
       ),
 
     );
