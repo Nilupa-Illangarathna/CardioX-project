@@ -31,10 +31,6 @@ class MyApp extends StatelessWidget {
         splash: Hero(
           tag: "Splash",
           child:
-          // Lottie.asset(
-          //   'assets/videos/splash screen.lottie.json',
-          //   fit: BoxFit.fitWidth,
-          // ),
           Image.asset(
             'assets/images/CardioXPNG.jpg',
           ),

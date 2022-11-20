@@ -30,7 +30,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   animated_splash_screen: ^1.1.0
   lottie: ^2.0.0
-
+  syncfusion_flutter_gauges: ^18.2.44
+  morphable_shape: ^1.6.4
 dev_dependencies:
   flutter_test:
     sdk: flutter

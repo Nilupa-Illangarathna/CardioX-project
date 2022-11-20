@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import '../classes/colors.dart';
-
+import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'package:morphable_shape/morphable_shape.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -11,68 +13,54 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  int Timer_value=12000; //in milliseconds
+  bool Is_Loading=true;
+  int Progress_bar_percentage=0;
 
+
+  Timer timer;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  void Change_Progress_Bar_Value(){
+    print(Progress_bar_percentage);
+    setState(() {
+      Progress_bar_percentage<100? Progress_bar_percentage+=1: Progress_bar_percentage=100;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    Timer mytimer = Timer.periodic(Duration(seconds: 5), (timer) {
-      print("5 Seconds");
-    });
     return Scaffold(
       backgroundColor: HexColor("#3C9E91"),
       body: Stack(
         children: [
-          // Container(
-          //   height: MediaQuery.of(context).size.height * 0.20,
-          //   decoration: BoxDecoration(
-          //     color: HexColor("#F3FEFF"),
-          //     borderRadius: BorderRadius.only(bottomLeft: Radius.circular(20.0), bottomRight: Radius.circular(20.0), ),
-          //   ),
-          //   // width: MediaQuery.of(context).size.width * 0.8,
-          //   child: Center(
-          //     child: SizedBox(
-          //       height: MediaQuery.of(context).size.width * 0.4,
-          //       width: MediaQuery.of(context).size.width * 0.8,
-          //       child:
-          //       // Lottie.asset(
-          //       //   'assets/LottieLogo1.json',
-          //       //   width: 200,
-          //       //   height: 200,
-          //       //   fit: BoxFit.fill,
-          //       // ),
-          //       Hero(
-          //         tag: "Splash",
-          //         child: Image.asset(
-          //           'assets/images/CardioXPNG.png',
-          //         ),
-          //       ),
-          //     ),
-          //   ),
-          // ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // SizedBox(height: 100,),
+
               Container(
                 height: MediaQuery.of(context).size.height * 0.80,
                 decoration: BoxDecoration(
-                  // color: HexColor("#F3FEFF").withOpacity(0.9),
+
                   color: Colors.white,
                   borderRadius: BorderRadius.only(bottomLeft: Radius.circular(250.0), bottomRight: Radius.circular(0.0), ),
                 ),
-                // width: MediaQuery.of(context).size.width * 0.8,
+
                 child:
                 Center(
                   child: SizedBox(
                     height: MediaQuery.of(context).size.width * 0.4,
                     width: MediaQuery.of(context).size.width * 0.8,
                     child:
-                    // Lottie.asset(
-                    //   'assets/LottieLogo1.json',
-                    //   width: 200,
-                    //   height: 200,
-                    //   fit: BoxFit.fill,
-                    // ),
                     Hero(
                       tag: "Splash",
                       child: Image.asset(
@@ -82,55 +70,81 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.20,
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      // SizedBox(width: MediaQuery.of(context).size.width * 0.1,),
+                      ElevatedButton(
+                          onPressed: (){
+                            Progress_bar_percentage=0;
+                            Timer.periodic(Duration(milliseconds: (Timer_value/100).toInt()), (Timer t) => Change_Progress_Bar_Value());
+                            setState(() {
+                              Is_Loading=true; /////////////////////////////////////////////////////////////////////////////////////////
+                            });
+                            Future.delayed(Duration(milliseconds: Timer_value), () {
+                              setState(() {
+                                Is_Loading? Is_Loading=false:Is_Loading=true; //////////////////////////////////////////////////////////
+                              });
+                            });
+                          },
+                          style: ElevatedButton.styleFrom(
+                            fixedSize: Size(
+                                MediaQuery.of(context).size.height * 0.1,
+                                MediaQuery.of(context).size.height * 0.1,
+                            ),
+                            shape: const CircleBorder(),
+                            primary: Colors.green,
+                          ),
+                          child: Text("Click"),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width*0.3,
+                        child: Is_Loading?
+
+
+                        SfRadialGauge(axes: <RadialAxis>[
+                          RadialAxis(
+                            minimum: 0,
+                            maximum: 100,
+                            showLabels: false,
+                            showTicks: false,
+                            axisLineStyle: AxisLineStyle(
+                              thickness: 0.2,
+                              cornerStyle: CornerStyle.bothCurve,
+                              color: Color.fromARGB(30, 0, 169, 181),
+                              thicknessUnit: GaugeSizeUnit.factor,
+                            ),
+                            pointers: <GaugePointer>[
+                              RangePointer(
+                                // value: progressValue,
+                                value: Progress_bar_percentage.toDouble(),
+
+                                cornerStyle: CornerStyle.bothCurve,
+                                width: 0.2,
+                                sizeUnit: GaugeSizeUnit.factor,
+                              )
+                            ],
+                          ),
+
+                        ])
+
+
+                            :
+                        Container(height: 100,width: 200,color: Colors.red,),
+                      )
+                      // Is_Loading? CircularProgressIndicator():Container(height: 100,width: 200,color: Colors.red,),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ],
       ),
-      // Column(
-      //   children: [
-      //     Center(
-      //       // child: Container(
-      //       //   width: MediaQuery.of(context).size.width,
-      //       //   height: MediaQuery.of(context).size.height,
-      //       //   color: Colors.grey,
-      //       //   child: AnimatedAlign(
-      //       //     // alignment: s,
-      //       //   ),
-      //       // ),
-      //       child: Column(
-      //         children: [
-      //           Container(
-      //             height: MediaQuery.of(context).size.width * 0.45,
-      //             decoration: BoxDecoration(
-      //               color: HexColor("#F3FEFF"),
-      //               borderRadius: BorderRadius.only(bottomLeft: Radius.circular(40.0), bottomRight: Radius.circular(40.0) ),
-      //             ),
-      //             // width: MediaQuery.of(context).size.width * 0.8,
-      //             child: Center(
-      //               child: SizedBox(
-      //                 height: MediaQuery.of(context).size.width * 0.4,
-      //                 width: MediaQuery.of(context).size.width * 0.8,
-      //                 child:
-      //                 // Lottie.asset(
-      //                 //   'assets/LottieLogo1.json',
-      //                 //   width: 200,
-      //                 //   height: 200,
-      //                 //   fit: BoxFit.fill,
-      //                 // ),
-      //                 Hero(
-      //                   tag: "Splash",
-      //                   child: Image.asset(
-      //                     'assets/images/CardioXPNG.png',
-      //                   ),
-      //                 ),
-      //               ),
-      //             ),
-      //           ),
-      //         ],
-      //       ),
-      //     ),
-      //   ],
-      // ),
+
     );
   }
 }
