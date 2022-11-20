@@ -17,8 +17,10 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.0.0+1
 
+#environment:
+#  sdk: ">=2.7.0 <3.0.0"
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.8.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -31,10 +33,12 @@ dependencies:
   animated_splash_screen: ^1.1.0
   lottie: ^2.0.0
   syncfusion_flutter_gauges: ^18.2.44
-  morphable_shape: ^1.6.4
+  google_fonts: ^2.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_native_splash: "^1.2.0"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -51,7 +55,10 @@ flutter:
   assets:
     - assets/images/
     - assets/videos/
-
+    - assets/
+    - google_fonts/
+    - assets/fonts/
+    - assets/food/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -65,10 +72,12 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+
+  fonts:
+    - family: Times_New_Roman
+      fonts:
+        - asset: assets/fonts/times new roman.ttf
+
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
