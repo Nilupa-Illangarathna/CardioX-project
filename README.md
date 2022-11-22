@@ -7,3 +7,6 @@
 #### *App frontenD is properly designed
 #### *Currently working on the flask backend
 #### *Soon all will be integrated and deployed
+
+### Frontend Design
+https://user-images.githubusercontent.com/95247831/203331275-a5e01acb-3f58-4399-8541-8affeac497ff.mp4
