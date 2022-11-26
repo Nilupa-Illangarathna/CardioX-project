@@ -1,25 +1,37 @@
 import 'dart:async';
 import 'dart:async';
+import 'dart:convert';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import '../classes/colors.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import '../Constants/constants.dart';
 import '../Widgets/ResultModelBottomSheet.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+
 
 //Globle variables
 bool Running_a_Single_Process=false;
 
 class HomePage extends StatefulWidget {
+  HomePage({this.app});
+  final FirebaseApp app;
+
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  final referenceDatabase = FirebaseDatabase.instance;
+
+  var Firebase_Snapshot;
 
   int Timer_value=9000; //in milliseconds
   bool Is_Loading=true;
   int Progress_bar_percentage=0;
+  bool Fetch_Data=false; //Data Fetched From The Database
 
   Timer timer;
 
@@ -33,18 +45,26 @@ class _HomePageState extends State<HomePage> {
     super.dispose();
   }
 
-
   void SetTheState(){setState(() {});}
 
   void Change_Progress_Bar_Value(){
-    print(Progress_bar_percentage);
     setState(() {
-      Progress_bar_percentage<100? Progress_bar_percentage+=1: Progress_bar_percentage=100;
+      Progress_bar_percentage<100?
+      Progress_bar_percentage+=1:
+      Progress_bar_percentage=100;
     });
+  }
+
+  function(snapshot){
+    print(snapshot);
   }
 
   @override
   Widget build(BuildContext context) {
+    final ref = referenceDatabase.reference();
+
+
+
     return Scaffold(
       backgroundColor: HexColor("#3C9E91"),
       body: Stack(
@@ -52,7 +72,6 @@ class _HomePageState extends State<HomePage> {
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-
               Container(
                 height: MediaQuery.of(context).size.height * 0.80,
                 decoration: BoxDecoration(
@@ -60,9 +79,7 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.white,
                   borderRadius: BorderRadius.only(bottomLeft: Radius.circular(250.0), topRight: Radius.circular(250.0), ),
                 ),
-
-                child:
-                Center(
+                child: Center(
                   child: SizedBox(
                     height: MediaQuery.of(context).size.width * 0.4,
                     width: MediaQuery.of(context).size.width * 0.8,
@@ -84,8 +101,18 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       ElevatedButton(
                         onPressed: Running_a_Single_Process? null: (){
+
+                          ////Write data to Firebase
+                          // ref
+                          //     .child("CardioX")
+                          //     .set("Set")
+                          //     .asStream();
+
+                          Fetch_Data=true;
+
                           Running_a_Single_Process=true;
                           setState(() {});
+
                           Progress_bar_percentage=0;
                           Timer.periodic(Duration(milliseconds: (Timer_value/100).toInt()), (Timer t) => Change_Progress_Bar_Value());
                           setState(() {
@@ -93,8 +120,10 @@ class _HomePageState extends State<HomePage> {
                           });
                           Future.delayed(Duration(milliseconds: Timer_value), () {
                             setState(() {
-                              AddIncomeExpenses(context,SetTheState);
+                              Fetch_Data=false;
+                              ResultModelBottomSheet(context,SetTheState);
                               Is_Loading? Is_Loading=false:Is_Loading=true; //////////////////////////////////////////////////////////
+
                             });
                           });
                         },
@@ -104,71 +133,7 @@ class _HomePageState extends State<HomePage> {
                             textStyle: const TextStyle(fontSize: 30)),
                         child: const Text("START"),
                       ),
-                      // Container(
-                      //   width: MediaQuery.of(context).size.width*0.5,
-                      //   height: MediaQuery.of(context).size.height*0.15,
-                      //   decoration: BoxDecoration(
-                      //     gradient: LinearGradient(
-                      //       colors: [HexColor("#44B3A4"), HexColor("#33A78E")],
-                      //       // colors: [Color(0xFF6448FE), Color(0xFF5FC6FF)],
-                      //       begin: Alignment.center,
-                      //       end: Alignment.topLeft,
-                      //     ),
-                      //     borderRadius: BorderRadius.all(Radius.circular(28.0)),
-                      //   ),
-                      //   child: ElevatedButton(
-                      //     onPressed: Running_a_Single_Process? null: (){
-                      //       Running_a_Single_Process=true;
-                      //       setState(() {});
-                      //       Progress_bar_percentage=0;
-                      //       Timer.periodic(Duration(milliseconds: (Timer_value/100).toInt()), (Timer t) => Change_Progress_Bar_Value());
-                      //       setState(() {
-                      //         Is_Loading=true; /////////////////////////////////////////////////////////////////////////////////////////
-                      //       });
-                      //       Future.delayed(Duration(milliseconds: Timer_value), () {
-                      //         setState(() {
-                      //           AddIncomeExpenses(context,SetTheState);
-                      //           Is_Loading? Is_Loading=false:Is_Loading=true; //////////////////////////////////////////////////////////
-                      //         });
-                      //       });
-                      //     },
-                      //     style: ElevatedButton.styleFrom(
-                      //         primary: Colors.white.withOpacity(0.8),
-                      //         fixedSize: Size(MediaQuery.of(context).size.width*0.8, MediaQuery.of(context).size.width*0.2),
-                      //         textStyle: const TextStyle(fontSize: 30)),
-                      //     child: const Text("START"),
-                      //   ),
-                      //
-                      //
-                      //   // ElevatedButton(
-                      //   //   onPressed: Running_a_Single_Process? null: (){
-                      //   //     Running_a_Single_Process=true;
-                      //   //     setState(() {});
-                      //   //     Progress_bar_percentage=0;
-                      //   //     Timer.periodic(Duration(milliseconds: (Timer_value/100).toInt()), (Timer t) => Change_Progress_Bar_Value());
-                      //   //     setState(() {
-                      //   //       Is_Loading=true; /////////////////////////////////////////////////////////////////////////////////////////
-                      //   //     });
-                      //   //     Future.delayed(Duration(milliseconds: Timer_value), () {
-                      //   //       setState(() {
-                      //   //         AddIncomeExpenses(context,SetTheState);
-                      //   //         Is_Loading? Is_Loading=false:Is_Loading=true; //////////////////////////////////////////////////////////
-                      //   //       });
-                      //   //     });
-                      //   //   },
-                      //   //   style: ElevatedButton.styleFrom(
-                      //   //     primary: Colors.transparent,
-                      //   //     shadowColor: Colors.transparent,
-                      //   //     shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(28.0))),
-                      //   //   ),
-                      //   //   child:  Text(
-                      //   //       "START",
-                      //   //   style: TextStyle(
-                      //   //     fontSize: 40,
-                      //   //     color: HexColor("#1A5448").withOpacity(0.4),
-                      //   //   ),),
-                      //   // ),
-                      // ),
+
                       SizedBox(
                         width: MediaQuery.of(context).size.width*0.3,
                         child: Is_Loading?
@@ -204,13 +169,31 @@ class _HomePageState extends State<HomePage> {
                             :
                         Container(height: 0,width: 0),
                       )
-                      // Is_Loading? CircularProgressIndicator():Container(height: 100,width: 200,color: Colors.red,),
                     ],
                   ),
                 ),
               ),
+
+
+
+
+
+
+
             ],
           ),
+
+
+          Fetch_Data? FirebaseAnimatedList(
+          query: ref,
+          defaultChild: Text("loading"),
+          itemBuilder: (context, snapshot, animation, index){
+            Map<String, dynamic> FromFirebaseToFlutterAppData = jsonDecode(jsonEncode(snapshot.value));
+            print(FromFirebaseToFlutterAppData);
+          })
+              : SizedBox(height: 0,width: 0,)
+
+
         ],
       ),
 

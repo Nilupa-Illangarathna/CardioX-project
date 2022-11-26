@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../pages/HomePage.dart';
 import 'dart:math';
 
-void AddIncomeExpenses(BuildContext ctx,VoidCallback){
+void ResultModelBottomSheet(BuildContext ctx,VoidCallback){
   // int IDtemp = AllTransectionsForTheTime.length==0? 0:AllTransectionsForTheTime[AllTransectionsForTheTime.length-1].ID+1; //
   // String CategoryNametemp=OneCategory.CategoryName;  //8 CHARACTERS CAN BE ADDED
   // String CategoryTypetemp=OneCategory.CategoryType;  //

@@ -1,5 +1,6 @@
 import 'dart:math';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -9,13 +10,13 @@ import 'package:lottie/lottie.dart';
 import '../pages/HomePage.dart';
 
 class IntroPage extends StatefulWidget {
-  const IntroPage({Key key}) : super(key: key);
 
   @override
   _IntroPageState createState() => _IntroPageState();
 }
 
 class _IntroPageState extends State<IntroPage> with TickerProviderStateMixin {
+
   AnimationController _lottieAnimation;
   var expanded = false;
   double _bigFontSize = kIsWeb ? 234 : 178;
