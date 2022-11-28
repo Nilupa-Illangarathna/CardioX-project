@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../pages/HomePage.dart';
+<<<<<<< HEAD
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import '../classes/data.dart';
 import 'package:whatsapp_unilink/whatsapp_unilink.dart';
@@ -15,8 +16,14 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
   //   );
   //   await launch('$link');
   // }
+=======
+
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import '../classes/data.dart';
+>>>>>>> 4d49d1fc651d3658ace44c4763ae364b844e3b29
 
 
+void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Funnction){
 
   Future submitdata() async{
 //     if ((CategoryAmountInput == ""  ||double.parse(CategoryAmountInput) <0) && _text == '')
@@ -67,7 +74,11 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
 
     Running_a_Single_Process=false;
     Setting_State_Of_Previous_Screen_Funnction;
+<<<<<<< HEAD
     // print(User_Data_Object.response);
+=======
+
+>>>>>>> 4d49d1fc651d3658ace44c4763ae364b844e3b29
     return
       Stack(
         children: [
@@ -114,6 +125,7 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
 
+<<<<<<< HEAD
                             SizedBox(
                               height: MediaQuery.of(ctx).size.height * 0.40,
                               width: MediaQuery.of(ctx).size.width*0.8,
@@ -141,6 +153,13 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
                               onPressed: ()async{
                                 await FlutterPhoneDirectCaller.callNumber(User_Data_Object.mobile_number);
                                 // launchWhatsApp();
+=======
+                            User_Data_Object.response? Text(User_Data_Object.Heart_Attack_Possitive_message):Text(User_Data_Object.Heart_Attack_Negative_message),
+                            
+                            User_Data_Object.response? ElevatedButton(
+                              onPressed: ()async{
+                                await FlutterPhoneDirectCaller.callNumber(User_Data_Object.mobile_number);
+>>>>>>> 4d49d1fc651d3658ace44c4763ae364b844e3b29
                                 /////////////////////////////////
                                 //////////////////////////////////
                                 /////////////////////////////////
@@ -202,7 +221,11 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
                         height: MediaQuery.of(ctx).size.width * 0.70,
                         width: MediaQuery.of(ctx).size.width * 0.70,
                         child: Image.asset(
+<<<<<<< HEAD
                           User_Data_Object.response[0]==true? 'assets/images/Unhealthy heart.png':'assets/images/HealthyHeart.png',
+=======
+                          User_Data_Object.response? 'assets/images/Unhealthy heart.png':'assets/images/HealthyHeart.png',
+>>>>>>> 4d49d1fc651d3658ace44c4763ae364b844e3b29
                         ),
                       ),
                     ],

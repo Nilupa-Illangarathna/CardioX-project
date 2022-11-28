@@ -18,6 +18,7 @@ class All_User_Data_Class{
 }
 
 
+<<<<<<< HEAD
 final User_Data_Object = All_User_Data_Class(
     "0774483682",
     true,
@@ -26,3 +27,6 @@ final User_Data_Object = All_User_Data_Class(
     "please immediately seek medical help"
     ,"your heart is in good condition !"
 );
+=======
+final User_Data_Object = All_User_Data_Class("0774483682",true, 'http://6b42-35-237-44-4.ngrok.io/ha_prediction',false,"Heart attack Possible","Patient is fine");
+>>>>>>> 4d49d1fc651d3658ace44c4763ae364b844e3b29

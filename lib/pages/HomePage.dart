@@ -13,7 +13,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:http/http.dart';
 import '../classes/data.dart';
+<<<<<<< HEAD
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+=======
+>>>>>>> 4d49d1fc651d3658ace44c4763ae364b844e3b29
 
 //Globle variables
 bool Running_a_Single_Process=false;
@@ -138,6 +141,7 @@ class _HomePageState extends State<HomePage> {
                           /////////////////////////////////////////////////////////////////////////////////////////
                           /////////////////////////////////////////////////////////////////////////////////////////
                           //Remove this before submitting
+<<<<<<< HEAD
                           Future.delayed(Duration(milliseconds: (Timer_value/1.5).toInt()), () {
                             setState(() {
                               if (
@@ -151,6 +155,13 @@ class _HomePageState extends State<HomePage> {
                                 User_Data_Object.response=[false]; //Normal
                               }
                               print(User_Data_Object.response);
+=======
+                          var random=Random();
+                          int RandomNumber = 0 + random.nextInt(10 - 0);
+                          Future.delayed(Duration(milliseconds: (Timer_value/1.5).toInt()), () {
+                            setState(() {
+                              RandomNumber%2==0? User_Data_Object.response=true:User_Data_Object.response=false;
+>>>>>>> 4d49d1fc651d3658ace44c4763ae364b844e3b29
                             });
                           });
                           /////////////////////////////////////////////////////////////////////////////////////////
@@ -229,6 +240,7 @@ class _HomePageState extends State<HomePage> {
 
             ],
           ),
+<<<<<<< HEAD
 
 
 
@@ -236,6 +248,9 @@ class _HomePageState extends State<HomePage> {
 
 
         Fetch_Data? FirebaseAnimatedList(
+=======
+          Fetch_Data? FirebaseAnimatedList(
+>>>>>>> 4d49d1fc651d3658ace44c4763ae364b844e3b29
           query: ref,
           defaultChild: Text("loading"),
           itemBuilder: (context, snapshot, animation, index){
