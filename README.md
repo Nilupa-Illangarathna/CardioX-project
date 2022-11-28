@@ -6,7 +6,9 @@
 #### *ESP32 and ECG sensors related heardwares are connected and working properly
 #### *App frontenD is properly designed
 #### *Firebase realtime database part is completed. ESP32 will be connected through it.
-### *Currently working on the flask backend
+#### *Backend is completed
+#### *Data snapshot from the realtime firebase is grabbing and send it to the fast api ML model and result is taken. Currently ESP32 is not connected to firebase. All the other functonalities are working.
+### *ESP32 has to be connected to firebase.
 #### *Soon all will be integrated and deployed
 
 ### Frontend Design
