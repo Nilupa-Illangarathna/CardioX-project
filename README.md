@@ -5,7 +5,8 @@
 #### *Deep learning model is fully completed
 #### *ESP32 and ECG sensors related heardwares are connected and working properly
 #### *App frontenD is properly designed
-#### *Currently working on the flask backend
+#### *Firebase realtime database part is completed. ESP32 will be connected through it.
+### *Currently working on the flask backend
 #### *Soon all will be integrated and deployed
 
 ### Frontend Design
