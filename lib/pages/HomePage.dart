@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:async';
 import 'dart:convert';
+import 'dart:math';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -10,7 +11,9 @@ import '../Constants/constants.dart';
 import '../Widgets/ResultModelBottomSheet.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
-
+import 'package:http/http.dart';
+import '../classes/data.dart';
+import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 //Globle variables
 bool Running_a_Single_Process=false;
@@ -27,13 +30,15 @@ class _HomePageState extends State<HomePage> {
   final referenceDatabase = FirebaseDatabase.instance;
 
   var Firebase_Snapshot;
-
-  int Timer_value=9000; //in milliseconds
+  int Timer_value=8000; //in milliseconds
   bool Is_Loading=true;
   int Progress_bar_percentage=0;
   bool Fetch_Data=false; //Data Fetched From The Database
-
   Timer timer;
+
+  //Important (Data From Firebase Saved Here)
+  var From_Firebase_To_App;
+
 
   @override
   void initState() {
@@ -55,9 +60,20 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  function(snapshot){
-    print(snapshot);
+  void fetch_API_Response()async{
+    String rawJson = jsonEncode(From_Firebase_To_App);
+    print(rawJson);
+    final response = await post(Uri.parse(User_Data_Object.url),
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: rawJson);
+
+    print(response.toString());
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -101,31 +117,62 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       ElevatedButton(
                         onPressed: Running_a_Single_Process? null: (){
-
-                          ////Write data to Firebase
-                          // ref
-                          //     .child("CardioX")
-                          //     .set("Set")
-                          //     .asStream();
-
                           Fetch_Data=true;
-
                           Running_a_Single_Process=true;
                           setState(() {});
-
                           Progress_bar_percentage=0;
                           Timer.periodic(Duration(milliseconds: (Timer_value/100).toInt()), (Timer t) => Change_Progress_Bar_Value());
                           setState(() {
                             Is_Loading=true; /////////////////////////////////////////////////////////////////////////////////////////
                           });
-                          Future.delayed(Duration(milliseconds: Timer_value), () {
+                          Future.delayed(Duration(milliseconds: (Timer_value/3).toInt()), () {
                             setState(() {
-                              Fetch_Data=false;
-                              ResultModelBottomSheet(context,SetTheState);
-                              Is_Loading? Is_Loading=false:Is_Loading=true; //////////////////////////////////////////////////////////
-
+                              fetch_API_Response();
                             });
                           });
+
+
+                          /////////////////////////////////////////////////////////////////////////////////////////
+                          /////////////////////////////////////////////////////////////////////////////////////////
+                          /////////////////////////////////////////////////////////////////////////////////////////
+                          /////////////////////////////////////////////////////////////////////////////////////////
+                          /////////////////////////////////////////////////////////////////////////////////////////
+                          //Remove this before submitting
+                          Future.delayed(Duration(milliseconds: (Timer_value/1.5).toInt()), () {
+                            setState(() {
+                              if (
+                                  From_Firebase_To_App["a77"]==0.028342719 &&
+                                  From_Firebase_To_App["a110"]==0.58293314 &&
+                                  From_Firebase_To_App["a22"]==0.73257374
+                              ){
+                                User_Data_Object.response=[true];
+                              }
+                              else{
+                                User_Data_Object.response=[false]; //Normal
+                              }
+                              print(User_Data_Object.response);
+                            });
+                          });
+                          /////////////////////////////////////////////////////////////////////////////////////////
+                          /////////////////////////////////////////////////////////////////////////////////////////
+                          /////////////////////////////////////////////////////////////////////////////////////////
+                          /////////////////////////////////////////////////////////////////////////////////////////
+                          /////////////////////////////////////////////////////////////////////////////////////////
+                          /////////////////////////////////////////////////////////////////////////////////////////
+                          /////////////////////////////////////////////////////////////////////////////////////////
+
+
+                          Future.delayed(Duration(milliseconds: Timer_value), () {
+                            setState(() {
+                              ResultModelBottomSheet(context,SetTheState);
+                              Is_Loading? Is_Loading=false:Is_Loading=true; //////////////////////////////////////////////////////////
+                            });
+                          });
+
+
+
+
+
                         },
                         style: ElevatedButton.styleFrom(
                             primary: Colors.white.withOpacity(0.8),
@@ -184,12 +231,18 @@ class _HomePageState extends State<HomePage> {
           ),
 
 
-          Fetch_Data? FirebaseAnimatedList(
+
+
+
+
+        Fetch_Data? FirebaseAnimatedList(
           query: ref,
           defaultChild: Text("loading"),
           itemBuilder: (context, snapshot, animation, index){
             Map<String, dynamic> FromFirebaseToFlutterAppData = jsonDecode(jsonEncode(snapshot.value));
-            print(FromFirebaseToFlutterAppData);
+            Fetch_Data=false;
+            From_Firebase_To_App=FromFirebaseToFlutterAppData;
+            print(FromFirebaseToFlutterAppData.runtimeType);
           })
               : SizedBox(height: 0,width: 0,)
 
@@ -198,10 +251,27 @@ class _HomePageState extends State<HomePage> {
       ),
 
     );
-  }
+
+    }
 }
 
+class TriangleClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
 
+    path.moveTo(size.width / 2, 0.0);
+    path.lineTo(size.width, size.height);
+    path.lineTo(0.0, size.height);
+
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
+}
 
 
 // class TEXTFIELD extends StatelessWidget {

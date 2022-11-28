@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 import '../pages/HomePage.dart';
-import 'dart:math';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
+import '../classes/data.dart';
+import 'package:whatsapp_unilink/whatsapp_unilink.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-void ResultModelBottomSheet(BuildContext ctx,VoidCallback){
-  // int IDtemp = AllTransectionsForTheTime.length==0? 0:AllTransectionsForTheTime[AllTransectionsForTheTime.length-1].ID+1; //
-  // String CategoryNametemp=OneCategory.CategoryName;  //8 CHARACTERS CAN BE ADDED
-  // String CategoryTypetemp=OneCategory.CategoryType;  //
-  // double CurrentSumtemp;
-  // String AddressofTheImagete=OneCategory.IconAddress;  //
-  // Color ButtonColortemp=OneCategory.ButtonColor;  //
-  // Color EndButtonColortemp=OneCategory.EndColor;
-  // double TransectionAmounttemp; //
-  // bool IsRecurringtemp=IsRefurringFunction();
-  // String AccountDatatemp;
-  // DateTime Datetemp = DateTime.now().subtract(Duration(days:DateInt =="Today"? 0:(DateInt =="Yesterday"? 1:(DateInt =="Two Days ago"? 2:3))));
-  // // DateTime Datetemp = DateTime.now().subtract(Duration(days:DateInt =="Today"? 0:(DateInt =="Yesterday"? 1:(DateInt =="Two Days ago"? 2:(DateInt =="Three Days ago"? 3:(DateInt =="Four Days ago"? 4:(DateInt =="Five Days ago"? 5:(DateInt =="Six Days ago"? 6:(DateInt =="Seven Days ago"? 7:(DateInt =="Eight Days ago"? 8:(DateInt =="Nine Days ago"? 9:10)))))))))));
-  // TimeOfDay Timetemp = TimeOfDay.now();
+
+void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Funnction){
+
+  // launchWhatsApp() async {
+  //   final link = WhatsAppUnilink(
+  //     phoneNumber: '0778154328',
+  //     text: "Hey! I'm inquiring about the apartment listing",
+  //   );
+  //   await launch('$link');
+  // }
 
 
 
@@ -66,12 +65,9 @@ void ResultModelBottomSheet(BuildContext ctx,VoidCallback){
 
   showModalBottomSheet(isScrollControlled: true,isDismissible: true, enableDrag: true, context: ctx,backgroundColor: Colors.transparent, builder: (_){
 
-    var random=Random();
-    int RandomNumber = 0 + random.nextInt(100 - 0);
-
     Running_a_Single_Process=false;
-    VoidCallback;
-
+    Setting_State_Of_Previous_Screen_Funnction;
+    // print(User_Data_Object.response);
     return
       Stack(
         children: [
@@ -117,8 +113,34 @@ void ResultModelBottomSheet(BuildContext ctx,VoidCallback){
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            ElevatedButton(
-                              onPressed: (){
+
+                            SizedBox(
+                              height: MediaQuery.of(ctx).size.height * 0.40,
+                              width: MediaQuery.of(ctx).size.width*0.8,
+                              child: Center(
+                                child: Text(
+                                    User_Data_Object.response[0]==true?
+                                    User_Data_Object.Heart_Attack_Possitive_message:
+                                    User_Data_Object.Heart_Attack_Negative_message,
+                                    style: User_Data_Object.response[0]==true?
+                                        TextStyle(
+                                          color: Colors.redAccent.shade700,
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: MediaQuery.of(ctx).size.width*0.08,
+                                        ):
+                                        TextStyle(
+                                          color: Colors.redAccent.shade700,
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: MediaQuery.of(ctx).size.width*0.08,
+                                        ),
+                                ),
+                              ),
+                            ),
+                            
+                            User_Data_Object.response[0]==true? ElevatedButton(
+                              onPressed: ()async{
+                                await FlutterPhoneDirectCaller.callNumber(User_Data_Object.mobile_number);
+                                // launchWhatsApp();
                                 /////////////////////////////////
                                 //////////////////////////////////
                                 /////////////////////////////////
@@ -129,11 +151,12 @@ void ResultModelBottomSheet(BuildContext ctx,VoidCallback){
                                     fixedSize: Size(MediaQuery.of(ctx).size.width*0.8, MediaQuery.of(ctx).size.width*0.2),
                                     textStyle: const TextStyle(fontSize: 30)),
                                 child: const Text("Call Emergency"),
-                            ),
+                            ):SizedBox(height: MediaQuery.of(ctx).size.width*0.2,),
                             ElevatedButton(
                               // child: AddMoreCategoriesMenu(),
                               child: Text("Close"),
                               onPressed: (){
+                                print(User_Data_Object.response[0]);
                                 ////////////////////////////////////
                                 ///////////////////////////////////
                                 ///////////////////////////////////
@@ -154,8 +177,12 @@ void ResultModelBottomSheet(BuildContext ctx,VoidCallback){
                               height: MediaQuery.of(ctx).size.height*0.1,
                               child: Center(
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text("Slide Down To close"),
+                                    Text("Slide Down To close",
+                                    style: TextStyle(
+                                      color: Colors.grey
+                                    ),),
 
                                   ],
                                 ),
@@ -175,7 +202,7 @@ void ResultModelBottomSheet(BuildContext ctx,VoidCallback){
                         height: MediaQuery.of(ctx).size.width * 0.70,
                         width: MediaQuery.of(ctx).size.width * 0.70,
                         child: Image.asset(
-                          RandomNumber%2==0? 'assets/images/HealthyHeart.png':'assets/images/Unhealthy heart.png',
+                          User_Data_Object.response[0]==true? 'assets/images/Unhealthy heart.png':'assets/images/HealthyHeart.png',
                         ),
                       ),
                     ],
