@@ -16,5 +16,5 @@
 
 
 
-#### Initial design (No design at all)
+#### Initial design (No design at all). (Now this design is not being used)
 https://user-images.githubusercontent.com/95247831/203331275-a5e01acb-3f58-4399-8541-8affeac497ff.mp4
