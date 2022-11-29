@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
 import '../pages/HomePage.dart';
-<<<<<<< HEAD
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import '../classes/data.dart';
 import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
-void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Funnction){
-
-  // launchWhatsApp() async {
-  //   final link = WhatsAppUnilink(
-  //     phoneNumber: '0778154328',
-  //     text: "Hey! I'm inquiring about the apartment listing",
-  //   );
-  //   await launch('$link');
-  // }
-=======
-
-import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
-import '../classes/data.dart';
->>>>>>> 4d49d1fc651d3658ace44c4763ae364b844e3b29
+// void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Funnction){
+//
+//   // launchWhatsApp() async {
+//   //   final link = WhatsAppUnilink(
+//   //     phoneNumber: '0778154328',
+//   //     text: "Hey! I'm inquiring about the apartment listing",
+//   //   );
+//   //   await launch('$link');
+//   // }
+//
 
 
-void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Funnction){
-
-  Future submitdata() async{
+void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Funnction) {
+  Future submitdata() async {
 //     if ((CategoryAmountInput == ""  ||double.parse(CategoryAmountInput) <0) && _text == '')
 //     {
 //       return;
@@ -70,174 +64,267 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
 //     }
   }
 
-  showModalBottomSheet(isScrollControlled: true,isDismissible: true, enableDrag: true, context: ctx,backgroundColor: Colors.transparent, builder: (_){
+  showModalBottomSheet(isScrollControlled: true,
+      isDismissible: true,
+      enableDrag: true,
+      context: ctx,
+      backgroundColor: Colors.transparent,
+      builder: (_) {
+        Running_a_Single_Process = false;
+        Setting_State_Of_Previous_Screen_Funnction;
 
-    Running_a_Single_Process=false;
-    Setting_State_Of_Previous_Screen_Funnction;
-<<<<<<< HEAD
-    // print(User_Data_Object.response);
-=======
+        // print(User_Data_Object.response);
 
->>>>>>> 4d49d1fc651d3658ace44c4763ae364b844e3b29
-    return
-      Stack(
-        children: [
+        return
+          Stack(
+            children: [
 
-          Center(
-            child: Container(
-              height: MediaQuery.of(ctx).size.height * 0.85,
-              width: MediaQuery.of(ctx).size.width * 0.85,
-              decoration: BoxDecoration(
-                color: Colors.transparent,
-                borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(MediaQuery.of(ctx).size.height*0.05),
-                    bottomRight: Radius.circular(MediaQuery.of(ctx).size.height*0.05),
-                    topRight: Radius.circular(MediaQuery.of(ctx).size.height*0.05),
-                    topLeft: Radius.circular(MediaQuery.of(ctx).size.height*0.05)),
-              ),
-              child:
-              Stack(
-                // mainAxisAlignment: MainAxisAlignment.start,
-                // crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-
-                  Column(
+              Center(
+                child: Container(
+                  height: MediaQuery
+                      .of(ctx)
+                      .size
+                      .height * 0.85,
+                  width: MediaQuery
+                      .of(ctx)
+                      .size
+                      .width * 0.85,
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(MediaQuery
+                            .of(ctx)
+                            .size
+                            .height * 0.05),
+                        bottomRight: Radius.circular(MediaQuery
+                            .of(ctx)
+                            .size
+                            .height * 0.05),
+                        topRight: Radius.circular(MediaQuery
+                            .of(ctx)
+                            .size
+                            .height * 0.05),
+                        topLeft: Radius.circular(MediaQuery
+                            .of(ctx)
+                            .size
+                            .height * 0.05)),
+                  ),
+                  child:
+                  Stack(
+                    // mainAxisAlignment: MainAxisAlignment.start,
+                    // crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        height: MediaQuery.of(ctx).size.height * 0.16,
+
+                      Column(
+                        children: [
+                          SizedBox(
+                            height: MediaQuery
+                                .of(ctx)
+                                .size
+                                .height * 0.16,
+                          ),
+
+
+                          Container(
+                            height: MediaQuery
+                                .of(ctx)
+                                .size
+                                .height * 0.69,
+                            width: MediaQuery
+                                .of(ctx)
+                                .size
+                                .width * 0.85,
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.2),
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(MediaQuery
+                                      .of(ctx)
+                                      .size
+                                      .height * 0.05),
+                                  bottomRight: Radius.circular(MediaQuery
+                                      .of(ctx)
+                                      .size
+                                      .height * 0.05),
+                                  topRight: Radius.circular(MediaQuery
+                                      .of(ctx)
+                                      .size
+                                      .height * 0.05),
+                                  topLeft: Radius.circular(MediaQuery
+                                      .of(ctx)
+                                      .size
+                                      .height * 0.05)),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+
+
+                                SizedBox(
+                                  height: MediaQuery
+                                      .of(ctx)
+                                      .size
+                                      .height * 0.40,
+                                  width: MediaQuery
+                                      .of(ctx)
+                                      .size
+                                      .width * 0.8,
+                                  child: Center(
+                                    child: Text(
+                                      User_Data_Object.response[0] == true ?
+                                      User_Data_Object
+                                          .Heart_Attack_Possitive_message :
+                                      User_Data_Object
+                                          .Heart_Attack_Negative_message,
+                                      style: User_Data_Object.response[0] ==
+                                          true ?
+                                      TextStyle(
+                                        color: Colors.redAccent.shade700,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: MediaQuery
+                                            .of(ctx)
+                                            .size
+                                            .width * 0.08,
+                                      ) :
+                                      TextStyle(
+                                        color: Colors.redAccent.shade700,
+                                        fontWeight: FontWeight.w900,
+                                        fontSize: MediaQuery
+                                            .of(ctx)
+                                            .size
+                                            .width * 0.08,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                User_Data_Object.response[0] == true
+                                    ? ElevatedButton(
+                                  onPressed: () async {
+                                    await FlutterPhoneDirectCaller.callNumber(
+                                        User_Data_Object.mobile_number);
+                                    // launchWhatsApp();
+                                    /////////////////////////////////
+                                    //////////////////////////////////
+                                    /////////////////////////////////
+                                    /////////////////////////////////
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                      primary: Colors.white.withOpacity(0.8),
+                                      fixedSize: Size(MediaQuery
+                                          .of(ctx)
+                                          .size
+                                          .width * 0.8, MediaQuery
+                                          .of(ctx)
+                                          .size
+                                          .width * 0.2),
+                                      textStyle: const TextStyle(fontSize: 30)),
+                                  child: const Text("Call Emergency"),
+                                )
+                                    : SizedBox(height: MediaQuery
+                                    .of(ctx)
+                                    .size
+                                    .width * 0.2,),
+                                ElevatedButton(
+                                  // child: AddMoreCategoriesMenu(),
+                                  child: Text("Close"),
+                                  onPressed: () {
+                                    print(User_Data_Object.response[0]);
+                                    ////////////////////////////////////
+                                    ///////////////////////////////////
+                                    ///////////////////////////////////
+                                    ///////////////////////////////////
+                                    Navigator.of(ctx).pop();
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    fixedSize: Size(MediaQuery
+                                        .of(ctx)
+                                        .size
+                                        .width * 0.4, MediaQuery
+                                        .of(ctx)
+                                        .size
+                                        .width * 0.1),
+                                    elevation: 2,
+                                    primary: Colors.red.shade300,
+                                    shadowColor: Colors.black,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                          bottomLeft: Radius.circular(MediaQuery
+                                              .of(ctx)
+                                              .size
+                                              .height * 0.05),
+                                          bottomRight: Radius.circular(
+                                              MediaQuery
+                                                  .of(ctx)
+                                                  .size
+                                                  .height * 0.05),
+                                          topRight: Radius.circular(MediaQuery
+                                              .of(ctx)
+                                              .size
+                                              .height * 0.05),
+                                          topLeft: Radius.circular(MediaQuery
+                                              .of(ctx)
+                                              .size
+                                              .height * 0.05)),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: MediaQuery
+                                      .of(ctx)
+                                      .size
+                                      .height * 0.1,
+                                  child: Center(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment
+                                          .center,
+                                      children: [
+                                        Text("Slide Down To close",
+                                          style: TextStyle(
+                                              color: Colors.grey
+                                          ),),
+
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
 
 
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          SizedBox(
+                            height: MediaQuery
+                                .of(ctx)
+                                .size
+                                .width * 0.70,
+                            width: MediaQuery
+                                .of(ctx)
+                                .size
+                                .width * 0.70,
+                            child: Image.asset(
+                              User_Data_Object.response[0] == true
+                                  ? 'assets/images/Unhealthy heart.png'
+                                  : 'assets/images/HealthyHeart.png',
 
-
-                      Container(
-                        height: MediaQuery.of(ctx).size.height * 0.69,
-                        width: MediaQuery.of(ctx).size.width * 0.85,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.2),
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(MediaQuery.of(ctx).size.height*0.05),
-                              bottomRight: Radius.circular(MediaQuery.of(ctx).size.height*0.05),
-                              topRight: Radius.circular(MediaQuery.of(ctx).size.height*0.05),
-                              topLeft: Radius.circular(MediaQuery.of(ctx).size.height*0.05)),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-
-<<<<<<< HEAD
-                            SizedBox(
-                              height: MediaQuery.of(ctx).size.height * 0.40,
-                              width: MediaQuery.of(ctx).size.width*0.8,
-                              child: Center(
-                                child: Text(
-                                    User_Data_Object.response[0]==true?
-                                    User_Data_Object.Heart_Attack_Possitive_message:
-                                    User_Data_Object.Heart_Attack_Negative_message,
-                                    style: User_Data_Object.response[0]==true?
-                                        TextStyle(
-                                          color: Colors.redAccent.shade700,
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: MediaQuery.of(ctx).size.width*0.08,
-                                        ):
-                                        TextStyle(
-                                          color: Colors.redAccent.shade700,
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: MediaQuery.of(ctx).size.width*0.08,
-                                        ),
-                                ),
-                              ),
                             ),
-                            
-                            User_Data_Object.response[0]==true? ElevatedButton(
-                              onPressed: ()async{
-                                await FlutterPhoneDirectCaller.callNumber(User_Data_Object.mobile_number);
-                                // launchWhatsApp();
-=======
-                            User_Data_Object.response? Text(User_Data_Object.Heart_Attack_Possitive_message):Text(User_Data_Object.Heart_Attack_Negative_message),
-                            
-                            User_Data_Object.response? ElevatedButton(
-                              onPressed: ()async{
-                                await FlutterPhoneDirectCaller.callNumber(User_Data_Object.mobile_number);
->>>>>>> 4d49d1fc651d3658ace44c4763ae364b844e3b29
-                                /////////////////////////////////
-                                //////////////////////////////////
-                                /////////////////////////////////
-                                /////////////////////////////////
-                              },
-                                style: ElevatedButton.styleFrom(
-                                  primary: Colors.white.withOpacity(0.8),
-                                    fixedSize: Size(MediaQuery.of(ctx).size.width*0.8, MediaQuery.of(ctx).size.width*0.2),
-                                    textStyle: const TextStyle(fontSize: 30)),
-                                child: const Text("Call Emergency"),
-                            ):SizedBox(height: MediaQuery.of(ctx).size.width*0.2,),
-                            ElevatedButton(
-                              // child: AddMoreCategoriesMenu(),
-                              child: Text("Close"),
-                              onPressed: (){
-                                print(User_Data_Object.response[0]);
-                                ////////////////////////////////////
-                                ///////////////////////////////////
-                                ///////////////////////////////////
-                                ///////////////////////////////////
-                                Navigator.of(ctx).pop();
-                              },
-                              style: ElevatedButton.styleFrom(
-                                fixedSize: Size(MediaQuery.of(ctx).size.width*0.4, MediaQuery.of(ctx).size.width*0.1),
-                                elevation: 2,
-                                primary: Colors.red.shade300,
-                                shadowColor: Colors.black,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(MediaQuery.of(ctx).size.height*0.05),bottomRight: Radius.circular(MediaQuery.of(ctx).size.height*0.05),topRight: Radius.circular(MediaQuery.of(ctx).size.height*0.05),topLeft: Radius.circular(MediaQuery.of(ctx).size.height*0.05)),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(ctx).size.height*0.1,
-                              child: Center(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text("Slide Down To close",
-                                    style: TextStyle(
-                                      color: Colors.grey
-                                    ),),
-
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
+
+                      SizedBox(height: MediaQuery
+                          .of(ctx)
+                          .size
+                          .height * 0.01,),
                     ],
                   ),
-
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        height: MediaQuery.of(ctx).size.width * 0.70,
-                        width: MediaQuery.of(ctx).size.width * 0.70,
-                        child: Image.asset(
-<<<<<<< HEAD
-                          User_Data_Object.response[0]==true? 'assets/images/Unhealthy heart.png':'assets/images/HealthyHeart.png',
-=======
-                          User_Data_Object.response? 'assets/images/Unhealthy heart.png':'assets/images/HealthyHeart.png',
->>>>>>> 4d49d1fc651d3658ace44c4763ae364b844e3b29
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  SizedBox(height: MediaQuery.of(ctx).size.height*0.01,),
-                ],
-              ),
-            ),
-          )
-        ],
-      );
-  });
-
+                ),
+              )
+            ],
+          );
+      });
 }

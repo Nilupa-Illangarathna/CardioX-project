@@ -18,15 +18,12 @@ class All_User_Data_Class{
 }
 
 
-<<<<<<< HEAD
 final User_Data_Object = All_User_Data_Class(
     "0774483682",
     true,
-    'http://e7e7-34-125-113-190.ngrok.io/ha_prediction',
+    'http://3b13-104-196-167-182.ngrok.io/ha_prediction',
     false,
     "please immediately seek medical help"
     ,"your heart is in good condition !"
 );
-=======
-final User_Data_Object = All_User_Data_Class("0774483682",true, 'http://6b42-35-237-44-4.ngrok.io/ha_prediction',false,"Heart attack Possible","Patient is fine");
->>>>>>> 4d49d1fc651d3658ace44c4763ae364b844e3b29
+
