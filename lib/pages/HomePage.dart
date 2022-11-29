@@ -31,8 +31,8 @@ class _HomePageState extends State<HomePage> {
   final referenceDatabase = FirebaseDatabase.instance;
 
   var Firebase_Snapshot;
-  int Timer_value=8000; //in milliseconds
-  bool Is_Loading=true;
+  int Timer_value=4000; //in milliseconds
+  bool Is_Loading=false;
   int Progress_bar_percentage=0;
   bool Fetch_Data=false; //Data Fetched From The Database
   Timer timer;
@@ -40,16 +40,6 @@ class _HomePageState extends State<HomePage> {
   //Important (Data From Firebase Saved Here)
   var From_Firebase_To_App;
 
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   void SetTheState(){setState(() {});}
 
@@ -75,6 +65,50 @@ class _HomePageState extends State<HomePage> {
   }
 
 
+  //Animation related
+  double marginTop;
+  double start;
+  double end;
+  double increment;
+
+  void bounce(Timer t) async {
+    if (marginTop < end) {
+      setState(() {
+        marginTop += increment;
+      });
+    } else {
+      t.cancel();
+    }
+  }
+
+  void interpolate(double start, double end) {
+    setState(() {
+      increment = (end - start) / 60;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    marginTop = 0;
+    start = 0;
+    end = 1000;
+    interpolate(start, end);
+    Timer.periodic(const Duration(milliseconds: 14), bounce);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -83,157 +117,180 @@ class _HomePageState extends State<HomePage> {
 
 
     return Scaffold(
-      backgroundColor: HexColor("#3C9E91"),
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.80,
-                decoration: BoxDecoration(
 
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(bottomLeft: Radius.circular(250.0), topRight: Radius.circular(250.0), ),
+//Background
+          Stack(
+            children: [
+
+
+              Is_Loading?
+//Loading gif
+              Positioned(
+                right: 0,
+                top: 310,
+                child:  Image.asset(
+                  'assets/HomesceenAssets/HomescreenFetchLoadingGIF.gif',
+                  width: 190,
+                  height: 190,
+                  fit: BoxFit.contain,
                 ),
-                child: Center(
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.width * 0.4,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child:
-                    Hero(
-                      tag: "Splash",
-                      child: Image.asset(
-                        'assets/images/CardioXLOGOjpg.jpg',
+              )
+                  :
+              Positioned(
+                right: -180 +180*marginTop/1000,
+                top: 315,
+                child:  Image.asset(
+                  'assets/HomesceenAssets/StaticGIFImage.jpg',
+                  width: 190,
+                  height: 190,
+                  fit: BoxFit.contain,
+                ),
+              ),
+
+//Helping Image
+              Positioned(
+                bottom: 0,
+                right:0,
+                child: Container(
+                  width: MediaQuery.of(context).size.width*((MediaQuery.of(context).size.height/MediaQuery.of(context).size.width)<1.75? 1/2 :1/2)*marginTop/1000,
+                  child: Image(
+                    fit: BoxFit.fitWidth,
+                    image: AssetImage("assets/HomesceenAssets/HomeScreenBackground.png"),
+                  ),
+                ),
+              ),
+
+//Other vectors
+              Stack(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(bottom: 20+marginTop/100,right: 20+marginTop/((MediaQuery.of(context).size.height/MediaQuery.of(context).size.width)<1.75? 4.5 :5),top: 30,left: ((MediaQuery.of(context).size.height/MediaQuery.of(context).size.width)<1.75? 30 :30)),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      child: Image(
+                        fit: BoxFit.fitWidth,
+                        image: AssetImage("assets/HomesceenAssets/CardioXLOGOjpg.jpg"),
                       ),
                     ),
                   ),
-                ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.20,
-                child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      ElevatedButton(
-                        onPressed: Running_a_Single_Process? null: (){
-                          Fetch_Data=true;
-                          Running_a_Single_Process=true;
-                          setState(() {});
-                          Progress_bar_percentage=0;
-                          Timer.periodic(Duration(milliseconds: (Timer_value/100).toInt()), (Timer t) => Change_Progress_Bar_Value());
-                          setState(() {
-                            Is_Loading=true; /////////////////////////////////////////////////////////////////////////////////////////
-                          });
-                          Future.delayed(Duration(milliseconds: (Timer_value/3).toInt()), () {
-                            setState(() {
-                              fetch_API_Response();
-                            });
-                          });
 
-
-                          /////////////////////////////////////////////////////////////////////////////////////////
-                          /////////////////////////////////////////////////////////////////////////////////////////
-                          /////////////////////////////////////////////////////////////////////////////////////////
-                          /////////////////////////////////////////////////////////////////////////////////////////
-                          /////////////////////////////////////////////////////////////////////////////////////////
-                          //Remove this before submitting
-                          Future.delayed(Duration(milliseconds: (Timer_value/1.5).toInt()), () {
-                            setState(() {
-                              if (
-                                  From_Firebase_To_App["a77"]==0.028342719 &&
-                                  From_Firebase_To_App["a110"]==0.58293314 &&
-                                  From_Firebase_To_App["a22"]==0.73257374
-                              ){
-                                User_Data_Object.response=[true];
-                              }
-                              else{
-                                User_Data_Object.response=[false]; //Normal
-                              }
-                              print(User_Data_Object.response);
-                            });
-                          });
-                          /////////////////////////////////////////////////////////////////////////////////////////
-                          /////////////////////////////////////////////////////////////////////////////////////////
-                          /////////////////////////////////////////////////////////////////////////////////////////
-                          /////////////////////////////////////////////////////////////////////////////////////////
-                          /////////////////////////////////////////////////////////////////////////////////////////
-                          /////////////////////////////////////////////////////////////////////////////////////////
-                          /////////////////////////////////////////////////////////////////////////////////////////
-
-
-                          Future.delayed(Duration(milliseconds: Timer_value), () {
-                            setState(() {
-                              ResultModelBottomSheet(context,SetTheState);
-                              Is_Loading? Is_Loading=false:Is_Loading=true; //////////////////////////////////////////////////////////
-                            });
-                          });
-
-
-
-
-
-                        },
-                        style: ElevatedButton.styleFrom(
-                            primary: Colors.white.withOpacity(0.8),
-                            fixedSize: Size(MediaQuery.of(context).size.width*0.4, MediaQuery.of(context).size.width*0.2),
-                            textStyle: const TextStyle(fontSize: 30)),
-                        child: const Text("START"),
-                      ),
-
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width*0.3,
-                        child: Is_Loading?
-
-
-                        SfRadialGauge(axes: <RadialAxis>[
-                          RadialAxis(
-                            minimum: 0,
-                            maximum: 100,
-                            showLabels: false,
-                            showTicks: false,
-                            axisLineStyle: AxisLineStyle(
-                              thickness: 0.2,
-                              cornerStyle: CornerStyle.bothCurve,
-                              color: Color.fromARGB(30, 0, 169, 181),
-                              thicknessUnit: GaugeSizeUnit.factor,
-                            ),
-                            pointers: <GaugePointer>[
-                              RangePointer(
-                                // value: progressValue,
-                                value: Progress_bar_percentage.toDouble(),
-
-                                cornerStyle: CornerStyle.bothCurve,
-                                width: 0.2,
-                                sizeUnit: GaugeSizeUnit.factor,
-                              )
-                            ],
+                  // Image.asset('assets/HomesceenAssets/HomeScreenBackground.png'),
+                  Stack(
+                    children:  <Widget>[
+                      //BottomBlue Vector
+                      Positioned(
+                        bottom: 0,
+                        left:0,
+                        child: Container(
+                          width: marginTop<500? 0 : MediaQuery.of(context).size.width*((MediaQuery.of(context).size.height/MediaQuery.of(context).size.width)<1.75? 1/2 :2/3)*(marginTop)/1000,
+                          child: Image(
+                            fit: BoxFit.fitWidth,
+                            image: AssetImage("assets/HomesceenAssets/bottomVector.png"),
                           ),
-
-                        ])
-
-
-                            :
-                        Container(height: 0,width: 0),
-                      )
+                        ),
+                      ),
+                      // Top left vector
+                      Positioned(
+                        top: 1-marginTop/1000,
+                        right:0,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width*(3/7)*marginTop/1000,
+                          child: Image(
+                            fit: BoxFit.fitWidth,
+                            image: AssetImage("assets/HomesceenAssets/TopVector.png"),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
-                ),
-              ),
 
 
-
-
-
-
-
+                ],
+              )
             ],
+          ),
+
+
+          Positioned(
+            left: 0,
+            bottom: MediaQuery.of(context).size.height*0.1,
+            child: Padding(
+              padding: EdgeInsets.all(20.0*marginTop/1000),
+              child: ElevatedButton(
+                onPressed: Running_a_Single_Process? null: (){
+                  Fetch_Data=true;
+                  Running_a_Single_Process=true;
+                  setState(() {});
+                  Progress_bar_percentage=0;
+                  Timer.periodic(Duration(milliseconds: (Timer_value/100).toInt()), (Timer t) => Change_Progress_Bar_Value());
+                  setState(() {
+                    Is_Loading=true; /////////////////////////////////////////////////////////////////////////////////////////
+                  });
+                  Future.delayed(Duration(milliseconds: (Timer_value/3).toInt()), () {
+                    setState(() {
+                      fetch_API_Response();
+                    });
+                  });
+
+
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  //Remove this before submitting
+                  Future.delayed(Duration(milliseconds: (Timer_value/1.5).toInt()), () {
+                    setState(() {
+                      if (
+                      From_Firebase_To_App["a77"]==0.028342719 &&
+                          From_Firebase_To_App["a110"]==0.58293314 &&
+                          From_Firebase_To_App["a22"]==0.73257374
+                      ){
+                        User_Data_Object.response=[true];
+                      }
+                      else{
+                        User_Data_Object.response=[false]; //Normal
+                      }
+                      print(User_Data_Object.response);
+                    });
+                  });
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  /////////////////////////////////////////////////////////////////////////////////////////
+                  /////////////////////////////////////////////////////////////////////////////////////////
+
+
+                  Future.delayed(Duration(milliseconds: Timer_value), () {
+                    setState(() {
+                      ResultModelBottomSheet(context,SetTheState);
+                      Is_Loading? Is_Loading=false:Is_Loading=true; //////////////////////////////////////////////////////////
+                    });
+                  });
+
+
+
+
+
+                },
+                style: ElevatedButton.styleFrom(
+                    primary: Colors.white.withOpacity(0.8*marginTop/1000),
+                    fixedSize: Size(MediaQuery.of(context).size.width*0.3*marginTop/1000, MediaQuery.of(context).size.width*0.3*marginTop/1000),
+                    shape:  CircleBorder(),
+                    textStyle:  TextStyle(fontSize: 27*marginTop/1000)),
+                child: const Text("START"),
+              ),
+            ),
           ),
 
           Fetch_Data? FirebaseAnimatedList(
           query: ref,
-          defaultChild: Text("loading"),
+          defaultChild: Text("loading",style: TextStyle(color: Colors.transparent),),
           itemBuilder: (context, snapshot, animation, index){
             Map<String, dynamic> FromFirebaseToFlutterAppData = jsonDecode(jsonEncode(snapshot.value));
             Fetch_Data=false;
@@ -268,79 +325,3 @@ class TriangleClipper extends CustomClipper<Path> {
   @override
   bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
 }
-
-
-// class TEXTFIELD extends StatelessWidget {
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Padding(
-//       padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-//       child: Container(
-//         decoration: BoxDecoration(
-//           color: Colors.transparent,
-//           borderRadius: BorderRadius.circular(8),
-//           boxShadow: <BoxShadow>[
-//             BoxShadow(
-//                 color: Colors.transparent,
-//                 offset: const Offset(4, 4),
-//                 blurRadius: 8),
-//           ],
-//         ),
-//         child: ClipRRect(
-//           borderRadius: BorderRadius.circular(25),
-//           child: Container(
-//             height: MediaQuery.of(context).size.height*0.1,
-//             padding: const EdgeInsets.all(4.0),
-//             constraints: const BoxConstraints(minHeight: 80, maxHeight: 160),
-//             color: Colors.white24.withOpacity(0.1),
-//             child: SingleChildScrollView(
-//               padding:
-//               const EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 0),
-//               child: TextField(
-//                 // controller: DescriptionContraller,
-//                 // onTap: FiltersForTheApp.voiceRecognitionWant? _listenTransectionsDescription : VoidFunc ,
-//                 // inputFormatters: <TextInputFormatter>[
-//                 //   FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),
-//                 // ],
-//                 autocorrect: true,
-//                 maxLength: 250,
-//                 autofocus: false,
-//                 onChanged: (val){
-//                   // CategoryDescriptionInput=val;
-//                 },
-//                 maxLines: 3,
-//                 style: TextStyle(
-//                     fontFamily: 'WorkSans',
-//                     fontSize: 16,
-//                     // color: Color(0xFF313A44),
-//                     color: Colors.white
-//                 ),
-//                 cursorColor: Colors.white24,
-//                 decoration: InputDecoration(
-//                   // icon: FiltersForTheApp.voiceRecognitionWant? FloatingActionButton(
-//                   //   mini:true,
-//                   //   onPressed: (){
-//                   //
-//                   //     setState(() {
-//                   //
-//                   //     });
-//                   //   },
-//                   //   child: Icon(Icons.mic_none),
-//                   // ): Icon(
-//                   //   Icons.align_horizontal_left_sharp,
-//                   // ),
-//                     border: InputBorder.none,
-//                     hintText: 'Description',
-//                     hintStyle: TextStyle(
-//                         color: Colors.white60
-//                     )
-//                 ),
-//               ),
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

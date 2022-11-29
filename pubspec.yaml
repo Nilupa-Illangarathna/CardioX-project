@@ -66,6 +66,10 @@ flutter:
     - google_fonts/
     - assets/fonts/
     - assets/food/
+    - assets/HomesceenAssets/
+    - assets/HomesceenAssets/HomeScreenBackground.png
+    - assets/HomesceenAssets/CardioXLOGOjpg.jpg
+    - assets/ModelBottomSheet/vector.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

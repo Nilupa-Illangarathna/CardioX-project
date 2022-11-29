@@ -6,17 +6,6 @@ import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
-// void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Funnction){
-//
-//   // launchWhatsApp() async {
-//   //   final link = WhatsAppUnilink(
-//   //     phoneNumber: '0778154328',
-//   //     text: "Hey! I'm inquiring about the apartment listing",
-//   //   );
-//   //   await launch('$link');
-//   // }
-//
-
 
 void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Funnction) {
   Future submitdata() async {
@@ -81,33 +70,15 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
 
               Center(
                 child: Container(
-                  height: MediaQuery
-                      .of(ctx)
-                      .size
-                      .height * 0.85,
-                  width: MediaQuery
-                      .of(ctx)
-                      .size
-                      .width * 0.85,
+                  height: MediaQuery.of(ctx).size.height * 0.85,
+                  width: MediaQuery.of(ctx).size.width * 0.85,
                   decoration: BoxDecoration(
                     color: Colors.transparent,
                     borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(MediaQuery
-                            .of(ctx)
-                            .size
-                            .height * 0.05),
-                        bottomRight: Radius.circular(MediaQuery
-                            .of(ctx)
-                            .size
-                            .height * 0.05),
-                        topRight: Radius.circular(MediaQuery
-                            .of(ctx)
-                            .size
-                            .height * 0.05),
-                        topLeft: Radius.circular(MediaQuery
-                            .of(ctx)
-                            .size
-                            .height * 0.05)),
+                        bottomLeft: Radius.circular(MediaQuery.of(ctx).size.height * 0.05),
+                        bottomRight: Radius.circular(MediaQuery.of(ctx).size.height * 0.05),
+                        topRight: Radius.circular(MediaQuery.of(ctx).size.height * 0.05),
+                        topLeft: Radius.circular(MediaQuery.of(ctx).size.height * 0.05)),
                   ),
                   child:
                   Stack(
@@ -118,90 +89,69 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
                       Column(
                         children: [
                           SizedBox(
-                            height: MediaQuery
-                                .of(ctx)
-                                .size
-                                .height * 0.16,
+                            height: MediaQuery.of(ctx).size.height * 0.16,
                           ),
 
 
                           Container(
-                            height: MediaQuery
-                                .of(ctx)
-                                .size
-                                .height * 0.69,
-                            width: MediaQuery
-                                .of(ctx)
-                                .size
-                                .width * 0.85,
+                            height: MediaQuery.of(ctx).size.height * 0.69,
+                            width: MediaQuery.of(ctx).size.width * 0.85,
                             decoration: BoxDecoration(
                               color: Colors.white.withOpacity(0.2),
                               borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(MediaQuery
-                                      .of(ctx)
-                                      .size
-                                      .height * 0.05),
-                                  bottomRight: Radius.circular(MediaQuery
-                                      .of(ctx)
-                                      .size
-                                      .height * 0.05),
-                                  topRight: Radius.circular(MediaQuery
-                                      .of(ctx)
-                                      .size
-                                      .height * 0.05),
-                                  topLeft: Radius.circular(MediaQuery
-                                      .of(ctx)
-                                      .size
-                                      .height * 0.05)),
+                                  bottomLeft: Radius.circular(MediaQuery.of(ctx).size.height * 0.05),
+                                  bottomRight: Radius.circular(MediaQuery.of(ctx).size.height * 0.05),
+                                  topRight: Radius.circular(MediaQuery.of(ctx).size.height * 0.05),
+                                  topLeft: Radius.circular(MediaQuery.of(ctx).size.height * 0.05)),
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
 
 
-                                SizedBox(
-                                  height: MediaQuery
-                                      .of(ctx)
-                                      .size
-                                      .height * 0.40,
-                                  width: MediaQuery
-                                      .of(ctx)
-                                      .size
-                                      .width * 0.8,
-                                  child: Center(
-                                    child: Text(
-                                      User_Data_Object.response[0] == true ?
-                                      User_Data_Object
-                                          .Heart_Attack_Possitive_message :
-                                      User_Data_Object
-                                          .Heart_Attack_Negative_message,
-                                      style: User_Data_Object.response[0] ==
-                                          true ?
-                                      TextStyle(
-                                        color: Colors.redAccent.shade700,
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: MediaQuery
-                                            .of(ctx)
-                                            .size
-                                            .width * 0.08,
-                                      ) :
-                                      TextStyle(
-                                        color: Colors.redAccent.shade700,
-                                        fontWeight: FontWeight.w900,
-                                        fontSize: MediaQuery
-                                            .of(ctx)
-                                            .size
-                                            .width * 0.08,
-                                      ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(20),
                                     ),
+                                    boxShadow: [BoxShadow(
+                                      color: Colors.grey.withOpacity(0.2),
+                                      spreadRadius: 2,
+                                      blurRadius: 8,
+                                      offset: Offset(0, 0),
+                                    )],
                                   ),
+                                  margin: EdgeInsets.only(right: 30, left:30 , bottom: 30, top: 30),
+                                  padding: EdgeInsets.all(20),
+                                  child:Column(
+                                    children: [
+                                      Icon(
+                                        User_Data_Object.response[0] == true ? Icons.heart_broken: Icons.favorite,
+                                        color: User_Data_Object.response[0] == true ? Colors.red.shade900: Colors.redAccent,
+                                        size: 70,
+                                      ),
+                                      Text(
+                                        User_Data_Object.response[0] == true ?
+                                        User_Data_Object.Heart_Attack_Possitive_message :
+                                        User_Data_Object.Heart_Attack_Negative_message,
+                                        textAlign: TextAlign.center,
+                                        style: const TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 24.0,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ],
+                                  ),
+
                                 ),
+
+
 
                                 User_Data_Object.response[0] == true
                                     ? ElevatedButton(
                                   onPressed: () async {
-                                    await FlutterPhoneDirectCaller.callNumber(
-                                        User_Data_Object.mobile_number);
+                                    await FlutterPhoneDirectCaller.callNumber(User_Data_Object.mobile_number);
                                     // launchWhatsApp();
                                     /////////////////////////////////
                                     //////////////////////////////////
@@ -210,20 +160,11 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
                                   },
                                   style: ElevatedButton.styleFrom(
                                       primary: Colors.white.withOpacity(0.8),
-                                      fixedSize: Size(MediaQuery
-                                          .of(ctx)
-                                          .size
-                                          .width * 0.8, MediaQuery
-                                          .of(ctx)
-                                          .size
-                                          .width * 0.2),
+                                      fixedSize: Size(MediaQuery.of(ctx).size.width * 0.8, MediaQuery.of(ctx).size.width * 0.2),
                                       textStyle: const TextStyle(fontSize: 30)),
                                   child: const Text("Call Emergency"),
                                 )
-                                    : SizedBox(height: MediaQuery
-                                    .of(ctx)
-                                    .size
-                                    .width * 0.2,),
+                                    : SizedBox(height: MediaQuery.of(ctx).size.width * 0.2,),
                                 ElevatedButton(
                                   // child: AddMoreCategoriesMenu(),
                                   child: Text("Close"),
@@ -236,47 +177,27 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
                                     Navigator.of(ctx).pop();
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    fixedSize: Size(MediaQuery
-                                        .of(ctx)
-                                        .size
-                                        .width * 0.4, MediaQuery
-                                        .of(ctx)
-                                        .size
-                                        .width * 0.1),
+                                    fixedSize: Size(
+                                        MediaQuery.of(ctx).size.width * 0.4,
+                                        MediaQuery.of(ctx).size.width * 0.1),
                                     elevation: 2,
                                     primary: Colors.red.shade300,
                                     shadowColor: Colors.black,
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.only(
-                                          bottomLeft: Radius.circular(MediaQuery
-                                              .of(ctx)
-                                              .size
-                                              .height * 0.05),
+                                          bottomLeft: Radius.circular(MediaQuery.of(ctx).size.height * 0.05),
                                           bottomRight: Radius.circular(
-                                              MediaQuery
-                                                  .of(ctx)
-                                                  .size
-                                                  .height * 0.05),
-                                          topRight: Radius.circular(MediaQuery
-                                              .of(ctx)
-                                              .size
-                                              .height * 0.05),
-                                          topLeft: Radius.circular(MediaQuery
-                                              .of(ctx)
-                                              .size
-                                              .height * 0.05)),
+                                              MediaQuery.of(ctx).size.height * 0.05),
+                                          topRight: Radius.circular(MediaQuery.of(ctx).size.height * 0.05),
+                                          topLeft: Radius.circular(MediaQuery.of(ctx).size.height * 0.05)),
                                     ),
                                   ),
                                 ),
                                 SizedBox(
-                                  height: MediaQuery
-                                      .of(ctx)
-                                      .size
-                                      .height * 0.1,
+                                  height: MediaQuery.of(ctx).size.height * 0.1,
                                   child: Center(
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment
-                                          .center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
                                         Text("Slide Down To close",
                                           style: TextStyle(
@@ -298,14 +219,8 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           SizedBox(
-                            height: MediaQuery
-                                .of(ctx)
-                                .size
-                                .width * 0.70,
-                            width: MediaQuery
-                                .of(ctx)
-                                .size
-                                .width * 0.70,
+                            height: MediaQuery.of(ctx).size.width * 0.70,
+                            width: MediaQuery.of(ctx).size.width * 0.70,
                             child: Image.asset(
                               User_Data_Object.response[0] == true
                                   ? 'assets/images/Unhealthy heart.png'
@@ -316,10 +231,7 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
                         ],
                       ),
 
-                      SizedBox(height: MediaQuery
-                          .of(ctx)
-                          .size
-                          .height * 0.01,),
+                      SizedBox(height: MediaQuery.of(ctx).size.height * 0.01,),
                     ],
                   ),
                 ),
