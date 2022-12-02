@@ -11,5 +11,15 @@
 ### *ESP32 has to be connected to firebase.
 #### *Soon all will be integrated and deployed
 
-### Frontend Design
+### Frontend Design 
+
+#### When the patient is normal
+https://user-images.githubusercontent.com/95247831/204505757-e9387e58-9748-4a44-be14-1a658dd8c7be.mp4
+
+
+#### When the patient is in an emergency heart condition
+https://user-images.githubusercontent.com/95247831/204505837-bc2f28ae-7621-4697-95d3-b708a5f1699e.mp4
+
+#### Initial design (No design at all). (Now this design is not being used)
 https://user-images.githubusercontent.com/95247831/203331275-a5e01acb-3f58-4399-8541-8affeac497ff.mp4
+
