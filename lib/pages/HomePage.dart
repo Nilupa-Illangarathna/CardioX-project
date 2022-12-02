@@ -18,6 +18,7 @@ import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 //Globle variables
 bool Running_a_Single_Process=false;
+bool Fetch_Data=false; //Data Fetched From The Database
 
 class HomePage extends StatefulWidget {
   HomePage({this.app});
@@ -34,7 +35,7 @@ class _HomePageState extends State<HomePage> {
   int Timer_value=4000; //in milliseconds
   bool Is_Loading=false;
   int Progress_bar_percentage=0;
-  bool Fetch_Data=false; //Data Fetched From The Database
+
   Timer timer;
 
   //Important (Data From Firebase Saved Here)

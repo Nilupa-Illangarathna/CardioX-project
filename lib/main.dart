@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:spash_app/pages/HomePage.dart';
 import 'package:lottie/lottie.dart';
+import 'pages/navigation_home_screen_with_App_Drawer.dart';
+import 'pages/Settings.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,6 +33,11 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -42,6 +49,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: IntroPage(),
+      // home:NavigationHomeScreen(),
     );
   }
 }

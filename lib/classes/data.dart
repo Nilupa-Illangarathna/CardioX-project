@@ -1,10 +1,12 @@
 class All_User_Data_Class{
-  final mobile_number;
+  var mobile_number;
   var Current_State_Of_patient;
   String url;
   var response; //False means no heart attack
   var Heart_Attack_Possitive_message;
   var Heart_Attack_Negative_message;
+  var Bandwidth;
+  var FirstTime;
 
 
   All_User_Data_Class(
@@ -14,16 +16,20 @@ class All_User_Data_Class{
       this.response,
       this.Heart_Attack_Possitive_message,
       this.Heart_Attack_Negative_message,
+      this.Bandwidth,
+      this.FirstTime,
       );
 }
 
 
 final User_Data_Object = All_User_Data_Class(
-    "0774483682",
+    "",
     true,
     'http://3b13-104-196-167-182.ngrok.io/ha_prediction',
     false,
-    "please immediately seek medical help"
-    ,"your heart is in good condition !"
+    "please immediately seek medical help",
+    "your heart is in good condition !",
+    2,
+    true,
 );
 

@@ -151,7 +151,7 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
                                 User_Data_Object.response[0] == true
                                     ? ElevatedButton(
                                   onPressed: () async {
-                                    await FlutterPhoneDirectCaller.callNumber(User_Data_Object.mobile_number);
+                                    User_Data_Object.mobile_number==null? null: await FlutterPhoneDirectCaller.callNumber(User_Data_Object.mobile_number);
                                     // launchWhatsApp();
                                     /////////////////////////////////
                                     //////////////////////////////////

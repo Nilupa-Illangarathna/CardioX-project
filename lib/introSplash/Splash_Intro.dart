@@ -8,6 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 // import '../Future Needs/home.dart';
 import 'package:lottie/lottie.dart';
 import '../pages/HomePage.dart';
+import '../pages/navigation_home_screen_with_App_Drawer.dart';
 
 class IntroPage extends StatefulWidget {
 
@@ -36,7 +37,7 @@ class _IntroPageState extends State<IntroPage> with TickerProviderStateMixin {
           (value) => Future.delayed(Duration(seconds: 1)).then(
             (value) => _lottieAnimation.forward().then(
                   (value) => Navigator.of(context)
-                      .pushAndRemoveUntil(MaterialPageRoute(builder: (context) => HomePage()), (route) => false),
+                      .pushAndRemoveUntil(MaterialPageRoute(builder: (context) => NavigationHomeScreen()), (route) => false),
                 ),
           ),
         );
