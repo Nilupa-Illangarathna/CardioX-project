@@ -1,5 +1,7 @@
 # CardioX Pre-Heart_Attack detection System
 
+# Deep Learning model is in DeepLearning model(Python) folder in the project file set
+ 
 ## This system uses a deep learning model to detect a heart attack of a patient 4 hours before
 ### Current Progress
 #### *Deep learning model is fully completed
