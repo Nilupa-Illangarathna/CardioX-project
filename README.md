@@ -1,4 +1,4 @@
-# CardioX Pre-Heart_Attack detection System
+# CardioX Pre-Heart_Attack detection System (Completed)
 
 # Deep Learning model is in DeepLearning model(Python) folder in the project file set
  
@@ -11,7 +11,7 @@
 #### *Backend is completed
 #### *Data snapshot from the realtime firebase is grabbing and send it to the fast api ML model and result is taken. Currently ESP32 is not connected to firebase. All the other functonalities are working.
 ### *ESP32 has to be connected to firebase.
-#### *Soon all will be integrated and deployed
+# Now this is a fully functional system
 
 
 ## Introduction about the project
