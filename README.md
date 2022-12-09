@@ -13,6 +13,11 @@
 ### *ESP32 has to be connected to firebase.
 #### *Soon all will be integrated and deployed
 
+
+## Introduction about the project
+https://user-images.githubusercontent.com/95247831/206718769-263013df-324c-41a4-ae49-969fb2df0275.mp4
+
+
 ### Frontend Design 
 
 #### When the patient is normal
