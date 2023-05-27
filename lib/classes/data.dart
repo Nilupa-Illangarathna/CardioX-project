@@ -25,7 +25,7 @@ class All_User_Data_Class{
 final User_Data_Object = All_User_Data_Class(
     "",
     true,
-    'http://3b13-104-196-167-182.ngrok.io/ha_prediction',
+    'https://cardiox.herokuapp.com/ha_prediction',
     false,
     "please immediately seek medical help",
     "your heart is in good condition !",

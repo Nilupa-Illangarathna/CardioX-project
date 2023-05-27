@@ -5,6 +5,8 @@ import '../classes/data.dart';
 import 'package:whatsapp_unilink/whatsapp_unilink.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../pages/navigation_home_screen_with_App_Drawer.dart';
+
 
 
 void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Funnction) {
@@ -54,8 +56,8 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
   }
 
   showModalBottomSheet(isScrollControlled: true,
-      isDismissible: true,
-      enableDrag: true,
+      isDismissible: false,
+      enableDrag: false,
       context: ctx,
       backgroundColor: Colors.transparent,
       builder: (_) {
@@ -127,12 +129,12 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
                                   child:Column(
                                     children: [
                                       Icon(
-                                        User_Data_Object.response[0] == true ? Icons.heart_broken: Icons.favorite,
-                                        color: User_Data_Object.response[0] == true ? Colors.red.shade900: Colors.redAccent,
+                                        User_Data_Object.response == true ? Icons.heart_broken: Icons.favorite,
+                                        color: User_Data_Object.response == true ? Colors.red.shade900: Colors.redAccent,
                                         size: 70,
                                       ),
                                       Text(
-                                        User_Data_Object.response[0] == true ?
+                                        User_Data_Object.response == true ?
                                         User_Data_Object.Heart_Attack_Possitive_message :
                                         User_Data_Object.Heart_Attack_Negative_message,
                                         textAlign: TextAlign.center,
@@ -148,7 +150,7 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
 
 
 
-                                User_Data_Object.response[0] == true
+                                User_Data_Object.response == true
                                     ? ElevatedButton(
                                   onPressed: () async {
                                     User_Data_Object.mobile_number==null? null: await FlutterPhoneDirectCaller.callNumber(User_Data_Object.mobile_number);
@@ -169,12 +171,17 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
                                   // child: AddMoreCategoriesMenu(),
                                   child: Text("Close"),
                                   onPressed: () {
-                                    print(User_Data_Object.response[0]);
+                                    print(User_Data_Object.response);
+                                    User_Data_Object.response=false;
+                                    Running_a_Single_Process=false;
+                                    Fetch_Data=false; //Data Fetched From The Database
                                     ////////////////////////////////////
                                     ///////////////////////////////////
                                     ///////////////////////////////////
                                     ///////////////////////////////////
                                     Navigator.of(ctx).pop();
+                                    Navigator.of(ctx)
+                                        .pushAndRemoveUntil(MaterialPageRoute(builder: (context) => NavigationHomeScreen()), (route) => false);
                                   },
                                   style: ElevatedButton.styleFrom(
                                     fixedSize: Size(
@@ -222,7 +229,7 @@ void ResultModelBottomSheet(BuildContext ctx,Setting_State_Of_Previous_Screen_Fu
                             height: MediaQuery.of(ctx).size.width * 0.70,
                             width: MediaQuery.of(ctx).size.width * 0.70,
                             child: Image.asset(
-                              User_Data_Object.response[0] == true
+                              User_Data_Object.response == true
                                   ? 'assets/images/Unhealthy heart.png'
                                   : 'assets/images/HealthyHeart.png',
 
