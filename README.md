@@ -1,5 +1,7 @@
-# CardioX Pre-Heart_Attack detection System
+# CardioX Pre-Heart_Attack detection System (Completed)
 
+# Deep Learning model is in DeepLearning model(Python) folder in the project file set
+ 
 ## This system uses a deep learning model to detect a heart attack of a patient 4 hours before
 ### Current Progress
 #### *Deep learning model is fully completed
@@ -9,7 +11,12 @@
 #### *Backend is completed
 #### *Data snapshot from the realtime firebase is grabbing and send it to the fast api ML model and result is taken. Currently ESP32 is not connected to firebase. All the other functonalities are working.
 ### *ESP32 has to be connected to firebase.
-#### *Soon all will be integrated and deployed
+# Now this is a fully functional system
+
+
+## Introduction about the project
+https://user-images.githubusercontent.com/95247831/206718769-263013df-324c-41a4-ae49-969fb2df0275.mp4
+
 
 ### Frontend Design 
 
