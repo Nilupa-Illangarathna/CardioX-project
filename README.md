@@ -4,6 +4,15 @@
 
 The CardioX Pre-Heart_Attack Detection System is a comprehensive solution designed to detect potential heart attacks in patients four hours before they occur. This system employs a deep learning model, integrated with ESP32 and ECG sensors, to monitor and analyze patient data. The project includes a well-designed frontend, backend functionality, and real-time communication with Firebase for data synchronization.
 
+- ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+- ![TensorFlow](https://img.shields.io/badge/TensorFlow-2.7-orange)
+- ![ESP32](https://img.shields.io/badge/ESP32-Hardware-brightgreen)
+- ![Firebase](https://img.shields.io/badge/Firebase-Realtime%20Database-yellow)
+- ![FastAPI](https://img.shields.io/badge/FastAPI-Backend%20Framework-green)
+- ![HTML5](https://img.shields.io/badge/HTML5-Frontend-red)
+- ![CSS3](https://img.shields.io/badge/CSS3-Frontend-blue)
+- ![JavaScript](https://img.shields.io/badge/JavaScript-Frontend-yellow)
+
 ## Project Progress
 
 ### Current Status
